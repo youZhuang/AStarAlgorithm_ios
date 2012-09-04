@@ -1,0 +1,298 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A5881D9B15E7591E0076FB82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5881D9A15E7591E0076FB82 /* UIKit.framework */; };
+		A5881D9D15E7591E0076FB82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5881D9C15E7591E0076FB82 /* Foundation.framework */; };
+		A5881D9F15E7591E0076FB82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5881D9E15E7591E0076FB82 /* CoreGraphics.framework */; };
+		A5881DA515E7591E0076FB82 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5881DA315E7591E0076FB82 /* InfoPlist.strings */; };
+		A5881DA715E7591E0076FB82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5881DA615E7591E0076FB82 /* main.m */; };
+		A5881DAB15E7591E0076FB82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5881DAA15E7591E0076FB82 /* AppDelegate.m */; };
+		A5881DAE15E7591E0076FB82 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5881DAD15E7591E0076FB82 /* ViewController.m */; };
+		A5881DB115E7591E0076FB82 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5881DAF15E7591E0076FB82 /* ViewController.xib */; };
+		A5881DB915E759550076FB82 /* Astar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5881DB815E759550076FB82 /* Astar.cpp */; };
+		A5881DBC15E759A10076FB82 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5881DBB15E759A10076FB82 /* Map.cpp */; };
+		A5881DC315E773DD0076FB82 /* AStarView.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5881DC215E773DD0076FB82 /* AStarView.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A5881D9615E7591E0076FB82 /* AStarA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AStarA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5881D9A15E7591E0076FB82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A5881D9C15E7591E0076FB82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A5881D9E15E7591E0076FB82 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A5881DA215E7591E0076FB82 /* AStarA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AStarA-Info.plist"; sourceTree = "<group>"; };
+		A5881DA415E7591E0076FB82 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A5881DA615E7591E0076FB82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5881DA815E7591E0076FB82 /* AStarA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AStarA-Prefix.pch"; sourceTree = "<group>"; };
+		A5881DA915E7591E0076FB82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A5881DAA15E7591E0076FB82 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A5881DAC15E7591E0076FB82 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A5881DAD15E7591E0076FB82 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A5881DB015E7591E0076FB82 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		A5881DB715E759430076FB82 /* Astar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Astar.h; sourceTree = "<group>"; };
+		A5881DB815E759550076FB82 /* Astar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Astar.cpp; sourceTree = "<group>"; };
+		A5881DBA15E759980076FB82 /* Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
+		A5881DBB15E759A10076FB82 /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
+		A5881DC115E773DD0076FB82 /* AStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AStarView.h; sourceTree = "<group>"; };
+		A5881DC215E773DD0076FB82 /* AStarView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AStarView.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A5881D9315E7591E0076FB82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5881D9B15E7591E0076FB82 /* UIKit.framework in Frameworks */,
+				A5881D9D15E7591E0076FB82 /* Foundation.framework in Frameworks */,
+				A5881D9F15E7591E0076FB82 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A5881D8B15E7591E0076FB82 = {
+			isa = PBXGroup;
+			children = (
+				A5881DA015E7591E0076FB82 /* AStarA */,
+				A5881D9915E7591E0076FB82 /* Frameworks */,
+				A5881D9715E7591E0076FB82 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A5881D9715E7591E0076FB82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5881D9615E7591E0076FB82 /* AStarA.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5881D9915E7591E0076FB82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5881D9A15E7591E0076FB82 /* UIKit.framework */,
+				A5881D9C15E7591E0076FB82 /* Foundation.framework */,
+				A5881D9E15E7591E0076FB82 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A5881DA015E7591E0076FB82 /* AStarA */ = {
+			isa = PBXGroup;
+			children = (
+				A5881DA915E7591E0076FB82 /* AppDelegate.h */,
+				A5881DAA15E7591E0076FB82 /* AppDelegate.m */,
+				A5881DAC15E7591E0076FB82 /* ViewController.h */,
+				A5881DAD15E7591E0076FB82 /* ViewController.m */,
+				A5881DAF15E7591E0076FB82 /* ViewController.xib */,
+				A5881DA115E7591E0076FB82 /* Supporting Files */,
+				A5881DB715E759430076FB82 /* Astar.h */,
+				A5881DB815E759550076FB82 /* Astar.cpp */,
+				A5881DBA15E759980076FB82 /* Map.h */,
+				A5881DBB15E759A10076FB82 /* Map.cpp */,
+				A5881DC115E773DD0076FB82 /* AStarView.h */,
+				A5881DC215E773DD0076FB82 /* AStarView.mm */,
+			);
+			path = AStarA;
+			sourceTree = "<group>";
+		};
+		A5881DA115E7591E0076FB82 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5881DA215E7591E0076FB82 /* AStarA-Info.plist */,
+				A5881DA315E7591E0076FB82 /* InfoPlist.strings */,
+				A5881DA615E7591E0076FB82 /* main.m */,
+				A5881DA815E7591E0076FB82 /* AStarA-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A5881D9515E7591E0076FB82 /* AStarA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5881DB415E7591E0076FB82 /* Build configuration list for PBXNativeTarget "AStarA" */;
+			buildPhases = (
+				A5881D9215E7591E0076FB82 /* Sources */,
+				A5881D9315E7591E0076FB82 /* Frameworks */,
+				A5881D9415E7591E0076FB82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AStarA;
+			productName = AStarA;
+			productReference = A5881D9615E7591E0076FB82 /* AStarA.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A5881D8D15E7591E0076FB82 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = A5881D9015E7591E0076FB82 /* Build configuration list for PBXProject "AStarA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A5881D8B15E7591E0076FB82;
+			productRefGroup = A5881D9715E7591E0076FB82 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5881D9515E7591E0076FB82 /* AStarA */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5881D9415E7591E0076FB82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5881DA515E7591E0076FB82 /* InfoPlist.strings in Resources */,
+				A5881DB115E7591E0076FB82 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A5881D9215E7591E0076FB82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5881DA715E7591E0076FB82 /* main.m in Sources */,
+				A5881DAB15E7591E0076FB82 /* AppDelegate.m in Sources */,
+				A5881DAE15E7591E0076FB82 /* ViewController.m in Sources */,
+				A5881DB915E759550076FB82 /* Astar.cpp in Sources */,
+				A5881DBC15E759A10076FB82 /* Map.cpp in Sources */,
+				A5881DC315E773DD0076FB82 /* AStarView.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A5881DA315E7591E0076FB82 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5881DA415E7591E0076FB82 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A5881DAF15E7591E0076FB82 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5881DB015E7591E0076FB82 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A5881DB215E7591E0076FB82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A5881DB315E7591E0076FB82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5881DB515E7591E0076FB82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AStarA/AStarA-Prefix.pch";
+				INFOPLIST_FILE = "AStarA/AStarA-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A5881DB615E7591E0076FB82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AStarA/AStarA-Prefix.pch";
+				INFOPLIST_FILE = "AStarA/AStarA-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A5881D9015E7591E0076FB82 /* Build configuration list for PBXProject "AStarA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5881DB215E7591E0076FB82 /* Debug */,
+				A5881DB315E7591E0076FB82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5881DB415E7591E0076FB82 /* Build configuration list for PBXNativeTarget "AStarA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5881DB515E7591E0076FB82 /* Debug */,
+				A5881DB615E7591E0076FB82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A5881D8D15E7591E0076FB82 /* Project object */;
+}
