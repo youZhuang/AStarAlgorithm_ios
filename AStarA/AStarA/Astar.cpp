@@ -35,15 +35,7 @@ void Astar::Search()
         }
     }
     if (it != m_OpenList.end()) {
-        /*
-        for (int i = 0; i < m_OpenList.size(); i++) {
-            MapPoint p = m_OpenList[i];
-            delete p.parent;
-        }
-        for (int i = 0; i < m_CloseList.size(); i++) {
-            MapPoint p = m_CloseList[i];
-            delete p.parent;
-        }*/
+        
 //        MapPoint temp = curPoint;
 //        m_parentsList.clear();
 //        while (temp.parent != NULL) {
@@ -53,6 +45,15 @@ void Astar::Search()
 //        }
 //        printf("找到路径了");
         stop = true;
+        /*
+         for (int i = 0; i < m_OpenList.size(); i++) {
+         MapPoint p = m_OpenList[i];
+         delete p.parent;
+         }
+         for (int i = 0; i < m_CloseList.size(); i++) {
+         MapPoint p = m_CloseList[i];
+         delete p.parent;
+         }*/
     }
     sort(m_OpenList.begin(), m_OpenList.end());
     curPoint = m_OpenList[0];
