@@ -20,7 +20,7 @@ static Astar *star = nil;
         // Initialization code
         star = new Astar();
         star->start();
-        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(handleSearchWithTimer:) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(handleSearchWithTimer:) userInfo:nil repeats:YES];
     }
     return self;
 }
@@ -29,6 +29,7 @@ static Astar *star = nil;
 {
     if (!star->stop) {
         star->Search();
+        NSLog(@"cur point :%d,%d",star->recordPoint->x,star->recordPoint->y);
         [self setNeedsDisplay];
     }
 }
@@ -75,10 +76,10 @@ static Astar *star = nil;
         }
     }
     for (int i = 0; i < star->getParentsList().size(); i++) {
-        MapPoint p = star->getParentsList()[i];
-        [self drawColorWith:context withRect:CGRectMake(p.x * blockWidth + offset, p.y*blockHeight + offset, blockWidth, blockHeight) withColor:[UIColor blueColor]];
+        MapPoint* p = star->getParentsList()[i];
+        [self drawColorWith:context withRect:CGRectMake(p->x * blockWidth + offset, p->y*blockHeight + offset, blockWidth, blockHeight) withColor:[UIColor blueColor]];
     }
-    
+    [self drawColorWith:context withRect:CGRectMake(star->recordPoint->x * blockWidth + offset, star->recordPoint->y*blockHeight + offset, blockWidth, blockHeight) withColor:[UIColor greenColor]];
 }
 
 // Only override drawRect: if you perform custom drawing.

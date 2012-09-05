@@ -1,32 +1,45 @@
 //
-//  Astar.cpp
+//  Astar->cpp
 //  AStarA
 //
-//  Created by yiyang yuan on 8/24/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by yiyang yuan on 8/24/12->
+//  Copyright (c) 2012 __MyCompanyName__-> All rights reserved->
 //
 
 #include <iostream>
 #include "Astar.h"
 
+MapPoint* Astar::recordPoint =new MapPoint();
+
+Astar::~Astar()
+{
+    for (int i = 0; i < m_OpenList.size(); i++) {
+        MapPoint* p = m_OpenList[i];
+        delete p;
+    }
+    for (int i = 0; i < m_CloseList.size(); i++) {
+        MapPoint* p = m_CloseList[i];
+        delete p;
+    }
+}
 
 void Astar::start()
 {
-    m_map.pStart.G = 0;
-    m_map.pStart.H = 0;
-    m_map.pStart.F = m_map.GetF(m_map.pStart);
+    m_map.pStart->G = 0;
+    m_map.pStart->H = 0;
+    m_map.pStart->F = m_map.GetF(m_map.pStart);
     m_OpenList.push_back(m_map.pStart);
-    m_map.pStart.parent = NULL;
+    m_map.pStart->parent = NULL;
     curPoint = m_map.pStart;
     //Search();
 }
 
 void Astar::Search()
 {
-    vector<MapPoint>::iterator it = std::find(m_OpenList.begin(), m_OpenList.end(), m_map.pEnd);
+    //vector<MapPoint*>::iterator it = std::find(m_OpenList.begin(), m_OpenList.end(), m_map.pEnd);
     if (m_OpenList.size() <= 0 ) {
-        if ( it != m_OpenList.end()) {
-            
+        if ( ContainInOpenlist(m_map.pEnd)) {
+            stop = true;
             //break;
         }else {
             printf("没找到路径");
@@ -34,31 +47,17 @@ void Astar::Search()
             //break;
         }
     }
-    if (it != m_OpenList.end()) {
-        
-//        MapPoint temp = curPoint;
-//        m_parentsList.clear();
-//        while (temp.parent != NULL) {
-//            temp = *temp.parent;
-//            printf("parent value :%d %d",temp.x,temp.y);
-//            m_parentsList.push_back(temp);
-//        }
-//        printf("找到路径了");
+    
+    if (ContainInOpenlist(m_map.pEnd)) {
+        printf("找到路径了");
         stop = true;
-        /*
-         for (int i = 0; i < m_OpenList.size(); i++) {
-         MapPoint p = m_OpenList[i];
-         delete p.parent;
-         }
-         for (int i = 0; i < m_CloseList.size(); i++) {
-         MapPoint p = m_CloseList[i];
-         delete p.parent;
-         }*/
     }
-    sort(m_OpenList.begin(), m_OpenList.end());
-    curPoint = m_OpenList[0];
-    printf("curPoint value :%d %d\n",curPoint.x,curPoint.y);
-    for (vector<MapPoint>::iterator it = m_OpenList.begin(); it != m_OpenList.end();) {
+    
+    //sort(m_OpenList.begin(), m_OpenList.end());
+    curPoint = FindSmallestFInOpenList();
+    recordPoint = curPoint;
+    printf("curPoint value :%d %d\n",curPoint->x,curPoint->y);
+    for (vector<MapPoint*>::iterator it = m_OpenList.begin(); it != m_OpenList.end();) {
         if (*it == curPoint) {
             m_OpenList.erase(it);
         }else {
@@ -69,70 +68,73 @@ void Astar::Search()
     TestEightSide(curPoint);
     
     m_parentsList.clear();
-    while (curPoint.parent != NULL) {
-        printf("parent G value :%d\n",(curPoint).G);
+    while (curPoint->parent != NULL) {
+        printf("parent G value :%d\n",curPoint->G);
         m_parentsList.push_back(curPoint);
-        curPoint = *curPoint.parent;
+        curPoint = curPoint->parent;
     }
+    
  
 }
 
-void Astar::find(MapPoint p)
-{
-    
-}
-
-void Astar::TestEightSide(MapPoint p)
+void Astar::TestEightSide(MapPoint* p)
 {
     for (int i = 0; i < 8; i++) {
-        MapPoint tempP;
+        MapPoint* tempP ;
         if (i == 0) {
-            if (p.x - 1 < 0) {
+            if (p->x - 1 < 0) {
                 continue;
             }
-            tempP = MapPoint(p.x-1,p.y);    //L
-        }else if (i == 1) {
-            if (p.x - 1 < 0 || p.y - 1 < 0) {
-                continue;
-            }
-            tempP = MapPoint(p.x-1,p.y - 1);//L,D
-        }else if (i==2) {
-            if (p.x - 1 < 0 || p.y + 1 > MAPHEIGHT) {
-                continue;
-            }
-           tempP = MapPoint(p.x-1,p.y + 1);//L,U
-        }else if (i==3) {
-            if (p.x + 1 > MAPWIDTH) {
-                continue;
-            }
-            tempP = MapPoint(p.x+1,p.y);//R
-        }else if (i==4) {
-            if (p.x + 1 > MAPWIDTH || p.y - 1 < 0) {
-                continue;
-            }
-            tempP = MapPoint(p.x+1,p.y - 1);//R,D
-        }else if (i==5) {
-            if (p.x + 1 > MAPWIDTH || p.y + 1 > MAPHEIGHT) {
-                continue;
-            }
-            tempP = MapPoint(p.x+1,p.y + 1);//R,U
-        }else if (i==6) {
-            if (p.y - 1 < 0) {
-                continue;
-            }
-            tempP = MapPoint(p.x,p.y-1);//D
-        }else if (i==7) {
-            if (p.y + 1 > MAPHEIGHT) {
-                continue;
-            }
-            MapPoint tempP = MapPoint(p.x,p.y+1);//U
+            tempP = new MapPoint(p->x-1,p->y);    //L
         }
-        if (m_map.templateMap[tempP.y][tempP.x] == 1) {
+        else if (i == 1) {
+            if (p->x - 1 < 0 || p->y - 1 < 0) {
+                continue;
+            }
+            tempP = new MapPoint(p->x-1,p->y - 1);//L,U
+        }
+        else if (i==2) {
+            if (p->x - 1 < 0 || p->y + 1 > MAPHEIGHT) {
+                continue;
+            }
+           tempP = new MapPoint(p->x-1,p->y + 1);//L,D
+        }
+        else if (i==3) {
+            if (p->x + 1 > MAPWIDTH) {
+                continue;
+            }
+            tempP = new MapPoint(p->x+1,p->y);//R
+        }
+        else if (i==4) {
+            if (p->x + 1 > MAPWIDTH || p->y - 1 < 0) {
+                continue;
+            }
+            tempP = new MapPoint(p->x+1,p->y - 1);//R,U
+        }
+        else if (i==5) {
+            if (p->x + 1 > MAPWIDTH || p->y + 1 > MAPHEIGHT) {
+                continue;
+            }
+            tempP = new MapPoint(p->x+1,p->y + 1);//R,D
+        }
+        else if (i==6) {
+            if (p->y - 1 < 0) {
+                continue;
+            }
+            tempP = new MapPoint(p->x,p->y-1);//U
+        }
+        else if (i== 7) {
+            if (p->y + 1 > MAPHEIGHT) {
+                continue;
+            }
+            tempP = new MapPoint(p->x,p->y + 1);//D
+        }
+        if (m_map.templateMap[tempP->y][tempP->x] == 1) {
             continue;
         }
         bool isInCloseList = false;
         for (int i = 0; i < m_CloseList.size(); i++) {
-            if (tempP == m_CloseList[i]) {
+            if (*tempP == *m_CloseList[i]) {
                 isInCloseList = true;
                 break;
             }
@@ -140,53 +142,111 @@ void Astar::TestEightSide(MapPoint p)
         if (isInCloseList) {
             continue;
         }
-        tempP.parent = &p;
-        if (tempP == m_map.pEnd) {
+        tempP->parent = p;
+        if (*tempP == *m_map.pEnd) {
             printf("add end in open list");
         }
         calculatePoint(tempP);
     }
     
-    //printf("open list count :%lu\n",m_OpenList.size());
-    //printf("close list count :%lu\n",m_CloseList.size());
+    //printf("open list count :%lu\n",m_OpenList->size());
+    //printf("close list count :%lu\n",m_CloseList->size());
     
 }
 
-void Astar::calculatePoint(MapPoint p)
+void Astar::calculatePoint(MapPoint* p)
 {
-    vector<MapPoint>::iterator it = std::find(m_OpenList.begin(), m_OpenList.end(), p);
-    if (it == m_OpenList.end()) {//开放列表里没有这个节点
-        p.parent = new MapPoint();
-        memcpy(p.parent, &curPoint, sizeof(MapPoint));
+    //vector<MapPoint*>::iterator it = std::find(m_OpenList.begin(), m_OpenList.end(), p);
+    if (!ContainInOpenlist(p)) {//开放列表里没有这个节点
+
+        p->parent = curPoint;
         int G = 0;
-        if (abs(p.x - curPoint.x)+abs(p.y - curPoint.y) ==2) {
+        if (p->x != curPoint->x && p->y != curPoint->y) {
             G = 14;
         }else {
             G = 10;
         }
-        p.G = curPoint.G + G;
-        p.H = (abs(p.x - m_map.pEnd.x)+abs(p.y - m_map.pEnd.y))*10;
-        p.F = m_map.GetF(p);
+        p->G = curPoint->G + G;
+        p->H = (abs(p->x - m_map.pEnd->x)+abs(p->y - m_map.pEnd->y))*10;
+        p->F = m_map.GetF(p);
         m_OpenList.push_back(p);
         return;
     }else {
-        MapPoint temp = *it;
+        MapPoint *temp;
+        for (int i = 0; i < m_OpenList.size(); i++) {
+            if (*p == *m_OpenList[i]) {
+                temp = m_OpenList[i];
+                printf("found point G :%d",temp->G);
+            }
+        }
         int G = 0;
-        if (abs(p.x - curPoint.x)+abs(p.y - curPoint.y) ==2) {
+        if (p->x != curPoint->x && p->y != curPoint->y) {
             G = 14;
         }else {
             G = 10;
         }
-        p.G = curPoint.G + G;
-        p.H = (abs(p.x - m_map.pEnd.x)+abs(p.y - m_map.pEnd.y))*10;
-        p.F = m_map.GetF(p);
-        if (p.G < temp.G) {
-            curPoint = *p.parent;
+        p->G = curPoint->G + G;
+        p->H = (abs(p->x - m_map.pEnd->x)+abs(p->y - m_map.pEnd->y))*10;
+        p->F = m_map.GetF(p);
+        if (p->G < temp->G) {
+            curPoint = p->parent;
+            (temp)->G = p->G;
+            (temp)->H = p->H;
+            (temp)->F = p->F;
+            //sort(m_OpenList.begin(), m_OpenList.end());
+            //SortOpenlist();
+            for (int i = 0; i < m_OpenList.size(); i++) {
+                if (*p == *m_OpenList[i]) {
+                    temp = m_OpenList[i];
+                    printf("更小的G point :%d",temp->G);
+                }
+            }
         }
-        (*it).G = p.G;
-        (*it).H = p.H;
-        (*it).F = p.F;
-        sort(m_OpenList.begin(), m_OpenList.end());
         return ;
     }
 }
+
+MapPoint* Astar::FindSmallestFInOpenList()
+{
+    MapPoint *p = m_OpenList[0];
+    for (int i = 0; i < m_OpenList.size(); i++) {
+        if (p->F > m_OpenList[i]->F) {
+            p = m_OpenList[i];
+        }
+    }
+    return p;
+}
+
+void Astar::SortOpenlist()
+{
+    for (int i = 0; i < m_OpenList.size(); i++) {
+        for (int j = m_OpenList.size()-1; j > i; j--) {
+            if (m_OpenList[i]->F > m_OpenList[j]->F) {
+                MapPoint *temp = m_OpenList[i];
+                m_OpenList[i] = m_OpenList[j];
+                m_OpenList[j] = temp;
+            }
+        }
+    }
+}
+
+bool Astar::ContainInOpenlist(MapPoint *p)
+{
+    for (int i = 0; i < m_OpenList.size(); i++) {
+        if (*p == *m_OpenList[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Astar::ContainInCloselist(MapPoint *p)
+{
+    for (int i = 0; i < m_CloseList.size(); i++) {
+        if (*p == *m_CloseList[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
