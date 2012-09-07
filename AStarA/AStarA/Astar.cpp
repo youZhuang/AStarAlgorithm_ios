@@ -13,6 +13,7 @@ MapPoint* Astar::recordPoint =new MapPoint();
 
 Astar::~Astar()
 {
+    
     for (int i = 0; i < m_OpenList.size(); i++) {
         MapPoint* p = m_OpenList[i];
         delete p;
@@ -47,12 +48,23 @@ void Astar::Search()
             //break;
         }
     }
-    
-    if (ContainInOpenlist(m_map.pEnd)) {
-        printf("找到路径了");
-        stop = true;
+    if (m_OpenList.size() > 0) {
+        if (ContainInCloselist(m_map.pEnd)) {
+            printf("找到路径了");
+            //m_parentsList.clear();
+            /*
+            MapPoint *p = m_map.pEnd ;
+            while (p->parent != NULL) {
+                printf("parent G value :%d\n",p->G);
+                m_parentsList.push_back(p);
+                p = p->parent;
+            }*/
+            
+            printf("parent count :%lu",m_parentsList.size());
+            stop = true;
+            return;
+        }
     }
-    
     //sort(m_OpenList.begin(), m_OpenList.end());
     curPoint = FindSmallestFInOpenList();
     recordPoint = curPoint;
@@ -73,8 +85,7 @@ void Astar::Search()
         m_parentsList.push_back(curPoint);
         curPoint = curPoint->parent;
     }
-    
- 
+
 }
 
 void Astar::TestEightSide(MapPoint* p)
@@ -146,6 +157,13 @@ void Astar::TestEightSide(MapPoint* p)
         if (*tempP == *m_map.pEnd) {
             printf("add end in open list");
         }
+        int G = 0;
+        if (p->x != curPoint->x && p->y != curPoint->y) {
+            G = 14;
+        }else {
+            G = 10;
+        }
+        tempP->G = curPoint->G + G;
         calculatePoint(tempP);
     }
     
@@ -156,20 +174,13 @@ void Astar::TestEightSide(MapPoint* p)
 
 void Astar::calculatePoint(MapPoint* p)
 {
+    bool canUpdate = false;
     //vector<MapPoint*>::iterator it = std::find(m_OpenList.begin(), m_OpenList.end(), p);
     if (!ContainInOpenlist(p)) {//开放列表里没有这个节点
 
         p->parent = curPoint;
-        int G = 0;
-        if (p->x != curPoint->x && p->y != curPoint->y) {
-            G = 14;
-        }else {
-            G = 10;
-        }
-        p->G = curPoint->G + G;
-        p->H = (abs(p->x - m_map.pEnd->x)+abs(p->y - m_map.pEnd->y))*10;
-        p->F = m_map.GetF(p);
         m_OpenList.push_back(p);
+        canUpdate = true;
         return;
     }else {
         MapPoint *temp;
@@ -179,17 +190,11 @@ void Astar::calculatePoint(MapPoint* p)
                 printf("found point G :%d",temp->G);
             }
         }
-        int G = 0;
-        if (p->x != curPoint->x && p->y != curPoint->y) {
-            G = 14;
-        }else {
-            G = 10;
-        }
-        p->G = curPoint->G + G;
-        p->H = (abs(p->x - m_map.pEnd->x)+abs(p->y - m_map.pEnd->y))*10;
-        p->F = m_map.GetF(p);
+        
         if (p->G < temp->G) {
             curPoint = p->parent;
+            canUpdate = true;
+            
             (temp)->G = p->G;
             (temp)->H = p->H;
             (temp)->F = p->F;
@@ -202,6 +207,11 @@ void Astar::calculatePoint(MapPoint* p)
                 }
             }
         }
+        if (canUpdate) {
+            p->H = (abs(p->x - m_map.pEnd->x)+abs(p->y - m_map.pEnd->y))*10;
+            p->F = m_map.GetF(p);
+        }
+        
         return ;
     }
 }

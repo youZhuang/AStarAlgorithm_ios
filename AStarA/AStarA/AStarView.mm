@@ -27,9 +27,11 @@ static Astar *star = nil;
 
 -(void)handleSearchWithTimer:(NSTimer*)timer
 {
-    if (!star->stop) {
+    if (star->stop) {
+        [timer invalidate];
+    }else {
         star->Search();
-        NSLog(@"cur point :%d,%d",star->recordPoint->x,star->recordPoint->y);
+        //NSLog(@"cur point :%d,%d",star->recordPoint->x,star->recordPoint->y);
         [self setNeedsDisplay];
     }
 }
@@ -75,6 +77,7 @@ static Astar *star = nil;
             }
         }
     }
+    printf("parent count :%lu",star->getParentsList().size());
     for (int i = 0; i < star->getParentsList().size(); i++) {
         MapPoint* p = star->getParentsList()[i];
         [self drawColorWith:context withRect:CGRectMake(p->x * blockWidth + offset, p->y*blockHeight + offset, blockWidth, blockHeight) withColor:[UIColor blueColor]];
